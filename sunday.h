@@ -27,14 +27,11 @@ void sundayAlg(const std::string& P, const std::string& T) {
             j++;
         }
         if (j == m) {
-            //count++;
-            cout << "pattern found at index " << i << endl;
+            count++;
+            //cout << "pattern found at index " << i << endl;
         }
 
         if (i + m < n) {
-//            if(T[i+m] < 0){
-//                //cout<<"Error";
-//            }
             i += skip[  (unsigned char)  T[i + m]  ];
         } else {
             break;
