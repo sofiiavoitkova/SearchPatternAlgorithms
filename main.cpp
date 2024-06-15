@@ -26,6 +26,7 @@ std::string readTextFromFile(const std::string& filename) {
     return text;
 }
 
+
 long long measureTime(void (*searchFunction)(const std::string&, const std::string&), const std::string& text, const std::string& pattern)
 {
     auto start = std::chrono::high_resolution_clock::now();
@@ -35,31 +36,42 @@ long long measureTime(void (*searchFunction)(const std::string&, const std::stri
 }
 
 int main() {
-    std::string text = readTextFromFile("C:\\Users\\serwis\\CLionProjects\\untitled1\\chapter.txt");
+    std::string thetext = readTextFromFile("C:\\Users\\serwis\\CLionProjects\\untitled1\\chapter.txt");
     std::string pattern = readTextFromFile("C:\\Users\\serwis\\CLionProjects\\untitled1\\pattern.txt");
-    std::cout << " size brute sunday rabin gusfield kmp fsm" << std::endl;
-    for (int power = 1; 9*power <= text.length(); power *= 10) {
+    //std::string pattern =  "ababababababababab";
+//    std::string pattern =   "aaaaaab";
+//   std::string thetext = "";
+//
+//    for (int i = 0; i < 100000; ++i) {
+//        //thetext += 'A';
+//        thetext += "aaaaaaaab";
+//    }
+
+    std::cout << "size brute sunday rabin gusfield kmp fsm" << std::endl;
+    for (int power = 1; power <= thetext.length(); power *= 10) {
         for (int d = 1; d < 10; d++) {
             int size = d * power;
-              long long bruteForceTime = 0;
-              long long sunday = 0;
-              long long rabin = 0;
-              long long kmp = 0;
-              long long z = 0;
-              long long fsm = 0;
+            if (size > thetext.length()) break;
+            long long bruteForceTime = 0;
+            long long sunday = 0;
+            long long rabin = 0;
+            long long kmp = 0;
+            long long z = 0;
+            long long fsm = 0;
 
-              //string textcut = text.
+            string text = thetext.substr(0,size);
 
-              int T = 1;
-              for (int t = 0; t < T; t++) {
-                  //bruteForceTime += measureTime(brute_force_pattern_matching, text, pattern);
-                  //sunday += measureTime(sundayAlg, text, pattern);
-                  //rabin += measureTime(rabinKarp, text, pattern);
-                  //kmp += measureTime(KMPAlg, text, pattern);
-                  //z += measureTime(gusfieldAlg, text, pattern);
-                  fsm += measureTime(FSMAlg, text, pattern);
+            int T = 35;
+            for (int t = 0; t < T; t++) {
+                bruteForceTime += measureTime(brute_force_pattern_matching, text, pattern);
+                sunday += measureTime(sundayAlg, text, pattern);
+                rabin += measureTime(rabinKarp, text, pattern);
+                kmp += measureTime(KMPAlg, text, pattern);
+                z += measureTime(gusfieldAlg, text, pattern);
+                fsm += measureTime(FSMAlg, text, pattern);
             }
             std::cout << size << " " << bruteForceTime / T << " " << sunday / T << " " << rabin / T << " " <<z/ T<< " " <<kmp / T << " " <<fsm / T<<std::endl;
+            //std::cout << size << " " <<  sunday/ T <<  " " << rabin/ T << endl;
 
         }
     }
