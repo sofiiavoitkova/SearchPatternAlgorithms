@@ -33,7 +33,12 @@ void getZarr(const std::string& str, int Z[]) {
 }
 
 void gusfieldAlg(const std::string& T, const std::string& P) {
+    unsigned int n = T.length();
+    unsigned int m = P.length();
     std::string concat = P + "#" + T;
+
+    if (n > m) return;
+
     int l = concat.length();
 
     int* Z = new int[l];
@@ -42,7 +47,6 @@ void gusfieldAlg(const std::string& T, const std::string& P) {
 
     for (int i = 0; i < l; ++i) {
         if (Z[i] == P.length())
-            //std::cout << "Pattern found at index " << i - P.length() - 1 << std::endl;
             count++;
     }
 
