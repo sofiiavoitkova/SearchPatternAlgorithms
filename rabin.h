@@ -7,10 +7,8 @@ void rabinKarp(const std::string& P, const std::string& T) {
     unsigned int n = T.length();
     unsigned int m = P.length();
 
-    if (m > n) {
-        std::cout << "Pattern length is greater than text length." << std::endl;
-        return;
-    }
+
+    if (m > n) return;
 
     int S = 128;
     int L = 997;
@@ -35,7 +33,7 @@ void rabinKarp(const std::string& P, const std::string& T) {
             j++;
         }
         if (j == m) {
-            std::cout << "Pattern found at position 0" << std::endl;
+            count++;
         }
     }
 
@@ -46,7 +44,6 @@ void rabinKarp(const std::string& P, const std::string& T) {
                 j++;
             }
             if (j == m) {
-                //std::cout << "Pattern found at position " << i << std::endl;
                 count++;
             }
         }
