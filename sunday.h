@@ -8,6 +8,7 @@ void sundayAlg(const std::string& P, const std::string& T) {
     int count = 0;
     unsigned int n = T.length();
     unsigned int m = P.length();
+    if (m > n) return;
 
     unsigned int skip[256];
 
@@ -28,7 +29,6 @@ void sundayAlg(const std::string& P, const std::string& T) {
         }
         if (j == m) {
             count++;
-            //cout << "pattern found at index " << i << endl;
         }
 
         if (i + m < n) {
