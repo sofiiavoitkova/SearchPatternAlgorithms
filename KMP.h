@@ -27,6 +27,7 @@ void computeLPSArray(const std::string& P, int m, int* lps) {
 void KMPAlg(const std::string& P, const std::string& T) {
     int m = P.length();
     int n = T.length();
+    if (m > n) return;
     int lps[m];
 
     computeLPSArray(P, m, lps);
@@ -41,8 +42,7 @@ void KMPAlg(const std::string& P, const std::string& T) {
         }
 
         if (j == m) {
-            std::cout << "Found pattern at index " << i - j << std::endl;
-            //count++;
+            count++;
             j = lps[j - 1];
         } else if (i < n && P[j] != T[i]) {
             if (j != 0)
